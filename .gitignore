@@ -1,2 +1,8 @@
 #DrRacket autosave
 *.rkt~
+
+#mac
+.DS_Store
+
+#racket compiled files
+compiled/*
