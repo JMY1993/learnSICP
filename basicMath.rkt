@@ -24,10 +24,27 @@
                               newton-transform
                               1.0)))
 
-;; helper procudures
+(define (fib n)
+  (define (iter a b n)
+    (if (= n 0)
+        a
+        (iter b (+ a b) (- n 1))))
+  (iter 0 1 n))
+
+;; helper procedures
 (define (average a b)
   (/ (+ a b) 2))
-
+; prime
+(define (smallest-divisor n) (find-divisor n 2))
+(define (find-divisor n test-divisor)
+  (cond ((> (square test-divisor) n) n)
+        ((divides? test-divisor n) test-divisor)
+        (else (find-divisor n (+ test-divisor 1)))))
+(define (divides? a b) (= (remainder b a) 0))
+(define (prime? n)
+  (= n (smallest-divisor n)))
+; transforms
+;average=dump
 (define average-dump
   (lambda (f)
     (lambda (x)
@@ -76,7 +93,9 @@
 (provide gcd)
 (provide sqrt)
 (provide cube-root)
+(provide fib)
 ;;
+(provide prime?)
 (provide average)
 (provide average-dump)
 (provide fixed-point)
